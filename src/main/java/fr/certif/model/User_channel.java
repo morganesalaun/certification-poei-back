@@ -1,5 +1,5 @@
 package fr.certif.model;
 
-public class ChannelJpa {
+public class User_channel {
 
 }
