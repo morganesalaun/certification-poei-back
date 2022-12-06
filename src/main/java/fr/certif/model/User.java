@@ -16,18 +16,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="utilisateur")
+@Table(name="user")
 
 public class User implements Serializable{
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
 		@Id
@@ -37,7 +35,17 @@ public class User implements Serializable{
 		@Column(nullable = false, length = 20, name ="username")
 		private String username;
 		
-		@OneToMany(mappedBy = "user")
+		@OneToMany(mappedBy = "user" , fetch=FetchType.EAGER)
 		private List<Message> messages = new ArrayList<Message>();
+
+		public User() {		
+		}
+		
+		public User(String username, List<Message> messages) {		
+			this.username = username;
+			this.messages = messages;
+		}
+		
+		
 
 }
